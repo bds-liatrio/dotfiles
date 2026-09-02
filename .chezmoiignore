@@ -26,26 +26,9 @@ Taskfile.yml
 scripts
 scripts/**
 
-# Skills registry — read at render time, never deployed to ~/
-skills-registry.txt
-
-# Claude Code runtime files (exclude from chezmoi management)
-.claude/commands/*.bak
-.claude/debug/
-.claude/file-history/
-.claude/history.jsonl
-.claude/ide/
-.claude/plans/
-.claude/plugins/
-.claude/projects/
-.claude/session-env/
-.claude/shell-snapshots/
-.claude/statsig/
-.claude/todos/
-
-# AI skills are owned by the `skills` CLI (canonical at ~/.agents/skills, with
-# vendor symlinks). Cede these paths so chezmoi and the CLI never conflict.
+# AI skills are owned by the `skills` CLI via SystemFiles/skills (canonical at
+# ~/.agents/skills, with vendor symlinks). Cede these paths so chezmoi never
+# conflicts with those installs.
 .agents/skills/**
-.claude/skills/**
 .cursor/skills/**
 .codex/skills/**

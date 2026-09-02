@@ -69,6 +69,6 @@ brew bundle --global
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply SystemFiles
 ```
 
-`init` prompts for `email`, `git_user`, `git_username`, `headless`,
-`default_gpg_key`, and `skills_enabled`; values are stored in
-`~/.config/chezmoi/chezmoi.toml` and drive `.tmpl` rendering.
+`init` prompts for `email`, `git_user`, `git_username`, `headless`, and
+`default_gpg_key`; values are stored in `~/.config/chezmoi/chezmoi.toml` and
+drive `.tmpl` rendering.

@@ -16,26 +16,19 @@
 # deletes the previously externally-cloned ~/.gittools directory from the target.
 .gittools
 
-# AI-native overhaul (Spec 01): remove stale vendor artifacts left over from the
-# pre-overhaul duplicated-content layout. These were previously chezmoi-managed
-# and are now gone from the source. Excluded on purpose: the managed symlinks
-# (.claude/CLAUDE.md, .claude/agents, .codex/AGENTS.md), .codex/config.toml
-# (intentionally left in place), and any */skills dir owned by the skills CLI.
-#
-# NOTE: .claude/agents is NOT listed below — it is now a managed symlink shim
-# (dot_claude/symlink_agents.tmpl -> ~/.agents/agents) for the canonical
-# subagents dir, so chezmoi owns it and must not also try to remove it.
-#
-# NOTE: obsolete ~/.agents/skills/{create_plan,iterate_plan,create_handoff,
-# research_codebase} are NOT listed here: .chezmoiremove cannot remove paths
-# matched by .chezmoiignore (`.agents/skills/**`). They are cleaned up once by
-# .chezmoiscripts/run_once_before_01-remove-stale-agent-skills.sh.tmpl instead.
+# Retired targets to delete from $HOME. Previously chezmoi-managed, now gone
+# from the source. Excluded on purpose: .codex/config.toml (intentionally left
+# in place) and any */skills dir (ignored in .chezmoiignore; owned by
+# SystemFiles/skills / the skills CLI).
+.claude/CLAUDE.md
+.claude/agents
 .claude/commands
 .claude/settings.json
 .claude/statusline-simple.sh
 .cursor/agents
 .cursor/commands
 .cursor/rules
+.codex/AGENTS.md
 .codex/prompts
 .codex/rules
 .codex/README.md

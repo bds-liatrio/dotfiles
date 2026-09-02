@@ -25,7 +25,7 @@ on the colocated repo — use `jj squash`/`split`/`rebase`/`edit`/`absorb`.
 Follow [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): description`.
 
 - Types: `feat`, `fix`, `docs`, `chore`, `refactor`, `update`.
-- Scopes reflect the area: `agents`, `claude`, `codex`, `cursor`, `jj`, `git`, `zsh`, `brew`, `chezmoi`.
+- Scopes reflect the area: `agents`, `cursor`, `jj`, `git`, `zsh`, `brew`, `chezmoi`.
 - Subjects <= 72 characters; add a body for larger or breaking changes.
 - All commits are GPG/SSH-signed (enforced via `dot_gitconfig.tmpl`).
 - Never add AI attribution or co-authors.

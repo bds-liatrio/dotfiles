@@ -45,13 +45,6 @@
 {{-   end -}}
 {{- end -}}
 
-{{- $skills_enabled := true -}}
-{{- if not (hasKey . "skills_enabled") -}}
-{{-   $skills_enabled = promptBool "Install AI skills via the skills CLI on apply (needs Node/npx)" true -}}
-{{- else -}}
-{{-   $skills_enabled = .skills_enabled -}}
-{{- end -}}
-
 [data]
   email             = {{ $email | quote }}
   git_user          = {{ $git_user | quote }}
@@ -59,7 +52,6 @@
   headless          = {{ $headless }}
   hostname          = {{ $hostname | quote }}
   default_gpg_key   = {{ $default_gpg_key | quote }}
-  skills_enabled    = {{ $skills_enabled }}
   {{- if eq $email "ben@sykesdev.ca" }}
   personal = true
   {{- else }}

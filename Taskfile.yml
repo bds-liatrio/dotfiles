@@ -2,7 +2,6 @@
 # Taskfile for dotfiles maintenance (https://taskfile.dev). Not deployed to ~/.
 #
 #   task            # list available tasks
-#   task skills:sync # reconcile installed skills into skills-registry.txt
 version: "3"
 
 silent: true
@@ -12,13 +11,3 @@ tasks:
     desc: List available tasks
     cmds:
       - task --list
-
-  skills:sync:
-    desc: Interactively confirm and add locally-installed skills to skills-registry.txt (pass -- --yes to add all)
-    cmds:
-      - ./scripts/sync-skills-registry.sh {{.CLI_ARGS}}
-
-  skills:sync:check:
-    desc: Report which installed skills are missing from skills-registry.txt (writes nothing)
-    cmds:
-      - ./scripts/sync-skills-registry.sh --dry-run

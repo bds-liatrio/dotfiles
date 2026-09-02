@@ -18,15 +18,13 @@ chezmoi apply           # deploy source state to ~/
 chezmoi execute-template < file.tmpl   # test .tmpl rendering
 brew bundle --global    # install packages after apply
 task                    # list maintenance tasks (go-task)
-task skills:sync        # add locally-installed skills to skills-registry.txt
 ```
 
 ## Architecture at a Glance
 
-- AI persona is canonical at `~/.agents/AGENTS.md` (source: `dot_agents/AGENTS.md`);
-  `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md` are symlink shims to it. No
-  duplicated per-tool rule/agent/command content. Skills are declared in
-  `skills-registry.txt` and installed by a `run_` script via the `skills` CLI.
+- AI persona is canonical at `~/.agents/AGENTS.md` (source: `dot_agents/AGENTS.md`).
+  No duplicated per-tool rule/agent/command content. Skills install from
+  [SystemFiles/skills](https://github.com/SystemFiles/skills), not from here.
 - Source naming uses chezmoi prefixes (`dot_`, `private_`, `symlink_`, `run_`),
   with `.chezmoiignore` (not deployed) and `.chezmoiremove` (deleted from `~/`).
 
@@ -38,6 +36,6 @@ templates only; machine-specific values are prompted at init time.
 ## Detailed Instructions
 
 - [chezmoi Conventions & Common Tasks](docs/ai/chezmoi-conventions.md) — naming, commands, adding dotfiles, setup
-- [AI-Tool Configuration](docs/ai/ai-config.md) — canonical persona, symlink shims, skills registry, ownership boundary
+- [AI-Tool Configuration](docs/ai/ai-config.md) — canonical persona, vendored subagents, Cursor CLI, ownership boundary
 - [Workflow](docs/ai/workflow.md) — jj-first VCS, branching, Conventional Commits, sensitive files
 - [Testing & Quality Gates](docs/ai/testing.md) — chezmoi diff/verify/execute-template

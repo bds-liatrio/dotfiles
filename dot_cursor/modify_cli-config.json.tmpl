@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # chezmoi modify_ script for ~/.cursor/cli-config.json.
 #
 # Cursor writes runtime + account state into this same file (authInfo,
@@ -18,7 +18,9 @@
 set -uo pipefail
 
 # chezmoi/Cursor may invoke with a minimal PATH; find jq on macOS + Linux.
-export PATH="/opt/homebrew/bin:/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:${PATH:-}"
+# Include /usr/bin:/bin — a stripped PATH would make `command -v jq` fail and
+# skip the merge, so statusLine never lands in the live file.
+export PATH="/opt/homebrew/bin:/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin:${PATH:-}"
 
 current="$(cat)"
 [ -n "${current}" ] || current='{}'
@@ -31,6 +33,10 @@ current="$(cat)"
 # `chezmoi apply` will revert an interactive model switch. Delete the "model",
 # "modelParameters", "selectedModel", "hasChangedDefaultModel" and "maxMode" keys
 # from $desired if you prefer the model to be machine-local.
+#
+# statusLine.command is an absolute /bin/bash invocation: the CLI spawns it with
+# child_process.spawn and no shell on Unix, so `~` is not expanded and
+# `#!/usr/bin/env bash` fails when PATH does not contain bash.
 read -r -d '' desired <<'JSON' || true
 {
   "version": 1,
@@ -43,8 +49,9 @@ read -r -d '' desired <<'JSON' || true
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.cursor/statusline.sh",
-    "padding": 2
+    "command": "/bin/bash {{ .chezmoi.homeDir }}/.cursor/statusline.sh",
+    "padding": 2,
+    "timeoutMs": 5000
   },
   "notifications": true,
   "hints": true,
@@ -76,28 +83,22 @@ read -r -d '' desired <<'JSON' || true
   "hasChangedDefaultModel": true,
   "maxMode": false,
   "model": {
-    "modelId": "claude-opus-4-8",
-    "displayModelId": "claude-opus-4-8",
-    "displayName": "Opus 4.8 1M Extra High",
-    "displayNameShort": "Opus 4.8 1M Extra High",
+    "modelId": "composer-2.5",
+    "displayModelId": "composer-2.5",
+    "displayName": "Composer 2.5",
+    "displayNameShort": "Composer 2.5",
     "aliases": [],
     "maxMode": false
   },
   "modelParameters": {
-    "claude-opus-4-8": [
-      { "id": "thinking", "value": "true" },
-      { "id": "context", "value": "1m" },
-      { "id": "effort", "value": "xhigh" },
+    "composer-2.5": [
       { "id": "fast", "value": "false" }
     ],
     "default": []
   },
   "selectedModel": {
-    "modelId": "claude-opus-4-8",
+    "modelId": "composer-2.5",
     "parameters": [
-      { "id": "thinking", "value": "true" },
-      { "id": "context", "value": "1m" },
-      { "id": "effort", "value": "xhigh" },
       { "id": "fast", "value": "false" }
     ]
   }
