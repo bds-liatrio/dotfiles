@@ -10,7 +10,7 @@
 
 *.tar.gz
 AGENTS.md
-LICENSE.md
+LICENSE
 README.md
 Makefile
 *.deb
@@ -25,6 +25,22 @@ docs/**
 Taskfile.yml
 scripts
 scripts/**
+
+# macOS-only targets. `~/Library/Application Support/Cursor` only exists on
+# darwin; on Linux the same prefs live under ~/.config/Cursor, so deploying the
+# Library tree there just litters $HOME.
+{{ if ne .chezmoi.os "darwin" -}}
+Library
+Library/**
+{{ end -}}
+
+# GnuPG runtime state (trust DBs, TOFU history, keyrings, sockets, secret keys)
+# is machine-local. Keep it out of both the source tree and ~/.
+.gnupg/*.db
+.gnupg/*.gpg
+.gnupg/*.lock
+.gnupg/random_seed
+.gnupg/private-keys-v1.d/**
 
 # AI skills are owned by the `skills` CLI via SystemFiles/skills (canonical at
 # ~/.agents/skills, with vendor symlinks). Cede these paths so chezmoi never

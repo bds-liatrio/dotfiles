@@ -127,7 +127,8 @@ Library/Application Support/Cursor/User/keybindings.json → cmd+i → composerM
 ```
 
 Caches, History, globalStorage, and extension VSIX trees under that User folder
-are not managed.
+are not managed. The whole `Library` tree is ignored on non-darwin machines
+(`.chezmoiignore` guard) since that path only exists on macOS.
 
 ## Zed
 
