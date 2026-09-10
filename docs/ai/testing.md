@@ -17,7 +17,7 @@ observation of the deployed result.
 
 - Always run `chezmoi diff` before `chezmoi apply`.
 - Finish a change with a clean (empty) `chezmoi diff` for the affected targets.
-- For scripts and symlinks, observe the real result (`readlink`, `ls -la`,
+- For scripts (`executable_`, `modify_`), observe the real result (`ls -la`,
   running the rendered script) — a passing render is not proof of runtime behavior.
 - Test `.tmpl` logic with `chezmoi execute-template` before committing.
 - Inspect changes on one machine before applying to others.
