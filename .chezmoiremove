@@ -32,3 +32,7 @@
 .codex/prompts
 .codex/rules
 .codex/README.md
+
+# glab exports removed: never rendered as a template, so it shipped literal
+# `{{ "{{" }} … {{ "}}" }}` into $HOME, and it stored a GitLab token in plaintext.
+.glab_exports

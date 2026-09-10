@@ -1,0 +1,9 @@
+enable-ssh-support
+use-standard-socket
+default-cache-ttl 604800
+max-cache-ttl 604800
+{{ if eq .chezmoi.os "darwin" -}}
+pinentry-program {{ or (lookPath "pinentry-mac") (lookPath "pinentry") "/opt/homebrew/bin/pinentry-mac" }}
+{{- else -}}
+pinentry-program {{ or (lookPath "pinentry-curses") (lookPath "pinentry") "/usr/bin/pinentry" }}
+{{- end }}
