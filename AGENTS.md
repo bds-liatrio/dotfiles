@@ -17,7 +17,6 @@ chezmoi diff            # preview pending changes (always before apply)
 chezmoi apply           # deploy source state to ~/
 chezmoi execute-template < file.tmpl   # test .tmpl rendering
 brew bundle --global    # install packages after apply
-task                    # list maintenance tasks (go-task)
 ```
 
 ## Architecture at a Glance
@@ -25,7 +24,7 @@ task                    # list maintenance tasks (go-task)
 - AI persona is canonical at `~/.agents/AGENTS.md` (source: `dot_agents/AGENTS.md`).
   No duplicated per-tool rule/agent/command content. Skills install from
   [SystemFiles/skills](https://github.com/SystemFiles/skills), not from here.
-- Source naming uses chezmoi prefixes (`dot_`, `private_`, `symlink_`, `run_`),
+- Source naming uses chezmoi prefixes (`dot_`, `private_`, `executable_`, `modify_`),
   with `.chezmoiignore` (not deployed) and `.chezmoiremove` (deleted from `~/`).
 
 ## Sensitive Files

@@ -12,19 +12,11 @@
 AGENTS.md
 LICENSE.md
 README.md
-Makefile
-*.deb
-*.tar.gz
-install.sh
 
 # Repository documentation (specs, AI config notes) — never deployed to ~/
 docs
 docs/**
 
-# Repo maintenance tooling — runs against the source tree, never deployed to ~/
-Taskfile.yml
-scripts
-scripts/**
 
 # AI skills are owned by the `skills` CLI via SystemFiles/skills (canonical at
 # ~/.agents/skills, with vendor symlinks). Cede these paths so chezmoi never

@@ -11,20 +11,17 @@ chezmoi maps source names to target paths by prefix/suffix:
 |---------------|---------|
 | `dot_` | Replaced with `.` in the target path (e.g. `dot_zshrc` -> `~/.zshrc`) |
 | `private_` | Deployed with `0600`/`0700` permissions |
-| `symlink_` | Source body is the symlink target; deploys a managed symlink |
+| `executable_` | Deployed with the executable bit set |
 | `.tmpl` | Rendered through Go `text/template` before deployment |
-| `run_` | Script in `.chezmoiscripts/`, executed on every `chezmoi apply` |
-| `run_once_` | Script executed once per machine (keyed by content hash) |
+| `modify_` | Script that receives the live target on stdin and writes the new contents to stdout |
 
 When adding source files:
 
 - Prefix dotfiles with `dot_`, restricted-permission files with `private_`.
 - Suffix templated files with `.tmpl` (Go template syntax).
-- Put scripts in `.chezmoiscripts/` with `run_`/`run_once_`.
 - Non-deployable repo files (e.g. `README.md`, `AGENTS.md`) go in `.chezmoiignore`.
 - Targets chezmoi should actively delete from existing machines go in `.chezmoiremove`.
-  Note: `.chezmoiremove` cannot remove paths matched by `.chezmoiignore`; use a
-  `run_once_` cleanup script for one-time removal of ignored paths.
+  Note: `.chezmoiremove` cannot remove paths matched by `.chezmoiignore`.
 
 ## Common Tasks
 

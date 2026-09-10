@@ -46,6 +46,6 @@ The marker for this instruction is: 🤖
 
 ## Tooling
 
-- Use skills installed under `~/.agents/skills/` (the canonical, vendor-neutral skills location shared by every tool) when a task matches a skill's purpose. Skills are declared in the repo's `skills-registry.txt` and installed/symlinked by the chezmoi skills installer; tools see them via their own `skills/` symlinks (e.g. `~/.cursor/skills/`, `~/.claude/skills/`).
+- Use skills already installed under `~/.agents/skills/` (or a tool-local `skills/` dir) when a task matches a skill's purpose. Install and update them from [SystemFiles/skills](https://github.com/SystemFiles/skills); this repo does not install skills.
 - If a Makefile or Taskfile exists, prefer its targets (check `make help` or `task -l`) over calling tools directly (e.g. use `task test` instead of `go test ./...`).
 - Use ASCII diagrams in markdown to help explain complex systems and interactions.
