@@ -1,8 +1,7 @@
 # AI-Tool Configuration
 
 This repo is **AI-native and vendor-neutral**: one canonical persona at
-`~/.agents/AGENTS.md`, plus a set of vendored subagents under
-`~/.agents/agents/`. There is no duplicated per-tool rule/agent/command
+`~/.agents/AGENTS.md`. There is no duplicated per-tool rule/agent/command
 content.
 
 ## Architecture
@@ -41,28 +40,11 @@ and vendor `*/skills/**` so it never conflicts with those installs.
 
 ## Subagents
 
-Six vendored [humanlayer](https://github.com/humanlayer/humanlayer/tree/main/.claude/agents)
-subagents live canonically under `dot_agents/agents/`. They are **not**
-symlinked into any tool directory.
-
-```
-dot_agents/agents/*.md
-   │  chezmoi apply
-   ▼
-~/.agents/agents/*.md            ◄── canonical, vendor-neutral (chezmoi-managed)
-```
-
-- **Agents:** `codebase-analyzer`, `codebase-locator`, `codebase-pattern-finder`,
-  `thoughts-analyzer`, `thoughts-locator`, `web-search-researcher` — each a markdown
-  file with YAML frontmatter (`name`, `description`, `tools`, `model`, optional `color`).
-- **No tool mount:** Cursor does not read `~/.agents/` directly. There is no
-  `~/.cursor/agents` shim. Retired shims are listed in `.chezmoiremove` so
-  `chezmoi apply` deletes them.
-- **Frontmatter normalization:** upstream ships `model: sonnet`; the vendored copies
-  use `model: inherit` so the field is valid in Cursor (which expects `inherit` or a
-  Cursor model ID). Everything else is verbatim.
-- **Add a subagent:** drop a `*.md` file in `dot_agents/agents/`, then `chezmoi apply`.
-- **Verify:** the six files appear under `~/.agents/agents/`.
+This repo does **not** manage subagents. The six vendored
+[humanlayer](https://github.com/humanlayer/humanlayer/tree/main/.claude/agents)
+files that used to live under `dot_agents/agents/` were removed: their only tool
+mount was the retired `~/.claude/agents` symlink, and Cursor does not read
+`~/.agents/` directly. `.chezmoiremove` deletes `~/.agents/agents` on apply.
 
 ## Cursor CLI Configuration
 
@@ -144,8 +126,8 @@ are not managed.
 those paths (`.chezmoiignore`) so the two never conflict. `.chezmoiremove`
 cannot delete ignored paths.
 
-Canonical subagent files under `~/.agents/agents/` are chezmoi-managed.
-Retired shims are listed in `.chezmoiremove`.
+Retired targets — including `~/.agents/agents` and the per-tool shims that once
+mounted it — are listed in `.chezmoiremove`.
 
 ## What Is Not Managed
 

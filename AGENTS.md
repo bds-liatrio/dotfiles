@@ -35,6 +35,6 @@ templates only; machine-specific values are prompted at init time.
 ## Detailed Instructions
 
 - [chezmoi Conventions & Common Tasks](docs/ai/chezmoi-conventions.md) — naming, commands, adding dotfiles, setup
-- [AI-Tool Configuration](docs/ai/ai-config.md) — canonical persona, vendored subagents, Cursor CLI, ownership boundary
+- [AI-Tool Configuration](docs/ai/ai-config.md) — canonical persona, Cursor CLI, ownership boundary
 - [Workflow](docs/ai/workflow.md) — jj-first VCS, branching, Conventional Commits, sensitive files
 - [Testing & Quality Gates](docs/ai/testing.md) — chezmoi diff/verify/execute-template
