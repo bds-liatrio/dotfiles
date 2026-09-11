@@ -20,6 +20,7 @@
 # from the source. Excluded on purpose: .codex/config.toml (intentionally left
 # in place) and any */skills dir (ignored in .chezmoiignore; owned by
 # SystemFiles/skills / the skills CLI).
+.agents/agents
 .claude/CLAUDE.md
 .claude/agents
 .claude/commands
