@@ -1,6 +1,5 @@
 {
     "workbench.iconTheme": "Cursor Dark Icons",
-    "application.shellEnvironmentResolutionTimeout": 120,
     "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "window.autoDetectColorScheme": false,
     "cursor.composer.showEmptyStateTips": false,
